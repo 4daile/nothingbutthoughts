@@ -1,0 +1,176 @@
+  :root{
+    --paper: #f6f3ec;
+    --ink: #2c2a24;
+    --ink-soft: #6b6558;
+    --line: rgba(44,42,36,0.12);
+ 
+    /* couleurs de thèmes — data couleur -> thème */
+    --c-code: #5c7a5e;      /* code / technique */
+    --c-design: #b5566f;    /* design / visuel */
+    --c-idee: #c98a3e;      /* idées / notes brutes */
+    --c-vie: #4c6e8a;       /* vie / perso */
+    --c-lecture: #8a6b9e;   /* lectures / références */
+  }
+ 
+  * { box-sizing: border-box; }
+ 
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    overflow: hidden;
+  }
+ 
+  #garden {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+ 
+  /* texture papier très légère, pour que le blanc ne soit pas nu */
+  #garden::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(var(--line) 1px, transparent 1px);
+    background-size: 26px 26px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+ 
+  .thought-dot {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+ 
+  .thought-dot:hover,
+  .thought-dot:focus-visible {
+    transform: translate(-50%, -50%) scale(1.18);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    outline: none;
+  }
+ 
+  .thought-dot:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+ 
+  /* légende des thèmes, discrète en bas à gauche */
+  #legend {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    z-index: 5;
+  }
+ 
+  #legend .item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+ 
+  #legend .swatch {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+ 
+  /* fenêtre / modale */
+  #overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(44,42,36,0.35);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+  }
+ 
+  #overlay.open { display: flex; }
+ 
+  #modal {
+    background: var(--paper);
+    width: min(560px, 90vw);
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 4px;
+    padding: 40px 36px 36px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+ 
+  #modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 6px;
+  }
+ 
+  #modal-close:hover { color: var(--ink); }
+ 
+  #modal-theme {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+ 
+  #modal-date {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin: 0 0 4px;
+  }
+ 
+  #modal-title {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    line-height: 1.25;
+  }
+ 
+  #modal-body {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+ 
+  #modal-body img {
+    max-width: 100%;
+    border-radius: 3px;
+    margin: 12px 0;
+  }
+ 
+  #modal-body p { margin: 0 0 14px; }
+  #modal-body h1, #modal-body h2, #modal-body h3 { font-family: inherit; margin: 22px 0 10px; }
+  #modal-body a { color: var(--c-vie); }
+  #modal-body code {
+    background: rgba(44,42,36,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
