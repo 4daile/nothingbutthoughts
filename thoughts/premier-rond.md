@@ -1,7 +1,8 @@
 ---
 title: Premier rond
 date: 2026-09-10
-theme: idee
+type: pensee
+shape: bulbe
 ---
 Ceci est le premier *thought* de mon jardin digital.
 

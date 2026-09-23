@@ -1,6 +1,7 @@
 ---
 title: Note perso
 date: 2026-08-28
-theme: vie
+type: narration
+shape: bourgeon
 ---
-Une pensée plus personnelle, juste pour tester le thème "vie".
+Une pensée plus personnelle, juste pour tester le type "narration".
