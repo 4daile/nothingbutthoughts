@@ -209,9 +209,9 @@ const overlay = document.getElementById("overlay");
 const modalDate = document.getElementById("modal-date");
 const modalThemeDot = document.getElementById("modal-theme-dot");
 const modalShapeLabel = document.getElementById("modal-shape-label");
-const modalTitle = document.getElementById("modal-title");
+const thoughtModalTitle = document.getElementById("thought-modal-title");
 const modalBody = document.getElementById("modal-body");
-const modalClose = document.getElementById("modal-close");
+const thoughtModalClose = document.getElementById("thought-modal-close");
  
 function formatDate(dateStr) {
   const d = new Date(dateStr);
@@ -227,7 +227,7 @@ function openThought(index) {
   modalDate.textContent = formatDate(thought.date);
   modalThemeDot.style.background = contentType.color;
   modalShapeLabel.textContent = `${contentType.label} · ${shape.label}`;
-  modalTitle.textContent = thought.title;
+  thoughtModalTitle.textContent = thought.title;
   modalBody.innerHTML = marked.parse(thought.content || "");
  
   overlay.classList.add("open");
@@ -237,10 +237,45 @@ function closeThought() {
   overlay.classList.remove("open");
 }
  
-modalClose.addEventListener("click", closeThought);
+thoughtModalClose.addEventListener("click", closeThought);
 overlay.addEventListener("click", (e) => { if (e.target === overlay) closeThought(); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeThought(); });
  
+/* ------------------------------------------------------------------ *
+ * 6.5 PANNEAU DU HEADER
+ * ------------------------------------------------------------------ */
+const siteHeader = document.getElementById("site-header");
+const overlayTitle = document.getElementById("overlay-title");
+const titlePanelClose = document.getElementById("title-panel-close");
+
+function openTitlePanel() {
+  overlayTitle.classList.add("open");
+  siteHeader.setAttribute("aria-expanded", "true");
+  titlePanelClose.focus();
+}
+
+function closeTitlePanel() {
+  if (!overlayTitle.classList.contains("open")) return;
+  overlayTitle.classList.remove("open");
+  siteHeader.setAttribute("aria-expanded", "false");
+  siteHeader.focus();
+}
+
+siteHeader.addEventListener("click", openTitlePanel);
+siteHeader.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    openTitlePanel();
+  }
+});
+titlePanelClose.addEventListener("click", closeTitlePanel);
+overlayTitle.addEventListener("click", (e) => { if (e.target === overlayTitle) closeTitlePanel(); });
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  closeThought();
+  closeTitlePanel();
+});
+
+
 /* ------------------------------------------------------------------ *
  * 7. INIT
  * ------------------------------------------------------------------ */

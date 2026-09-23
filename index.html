@@ -7,11 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<header>
-    <h1> nothing but thoughts </h1>
+<body>
+
+<header id="site-header" role="button" tabindex="0" aria-controls="overlay-title" aria-expanded="false">
+    <h1>nothing but thoughts</h1>
 </header>
 
-<body>
+<div id="overlay-title">
+  <div id="title-panel" role="dialog" aria-modal="true" aria-labelledby="title-panel-heading">
+    <button id="title-panel-close" aria-label="Fermer">✕</button>
+    <p class="panel-kicker">À propos du jardin</p>
+    <h2 id="title-panel-heading">nothing but thoughts</h2>
+    <p>Un jardin de pensées, de recherches et de récits. Chaque forme raconte un état, chaque couleur un type de contenu.</p>
+  </div>
+</div>
+
 
 
 <div id="garden"></div>
@@ -19,15 +29,15 @@
 <div id="legend"></div>
  
 <div id="overlay">
-  <div id="modal">
-    <button id="modal-close" aria-label="Fermer">✕</button>
+  <div id="thought-panel" role="dialog" aria-modal="true" aria-labelledby="thought-modal-title">
+    <button id="thought-modal-close" aria-label="Fermer">✕</button>
     <p id="modal-meta">
       <span id="modal-theme-dot"></span>
       <span id="modal-date"></span>
       <span id="modal-sep"> · </span>
       <span id="modal-shape-label"></span>
     </p>
-    <h2 id="modal-title"></h2>
+    <h2 id="thought-modal-title"></h2>
     <div id="modal-body"></div>
   </div>
 </div>

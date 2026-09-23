@@ -39,6 +39,27 @@
     opacity: 0.35;
     pointer-events: none;
   }
+
+  #site-header {
+    position: fixed;
+    top: 24px;
+    right: 28px;
+    z-index: 10;
+    cursor: pointer;
+    color: var(--ink);
+  }
+
+  #site-header h1 {
+    margin: 0;
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  #site-header:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 6px;
+  }
  
   /* ---- ronds/thoughts ---- */
   .thought-dot {
@@ -115,7 +136,8 @@
  
   #overlay.open { display: flex; }
  
-  #modal {
+  #thought-panel,
+  #title-panel {
     background: var(--paper);
     width: min(560px, 90vw);
     max-height: 80vh;
@@ -125,8 +147,60 @@
     position: relative;
     box-shadow: 0 20px 60px rgba(0,0,0,0.25);
   }
+
+  #overlay-title {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: flex-end;
+    background: rgba(44,42,36,0.18);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 15;
+  }
+
+  #overlay-title.open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  #title-panel {
+    width: min(390px, 88vw);
+    height: 100%;
+    max-height: none;
+    overflow-y: auto;
+    border-radius: 0;
+    padding: 88px 38px 38px;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+  }
+
+  #overlay-title.open #title-panel { transform: translateX(0); }
+
+  #title-panel-heading {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 0 0 18px;
+  }
+
+  #title-panel p:not(.panel-kicker) {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .panel-kicker {
+    color: var(--ink-soft);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+  }
  
-  #modal-close {
+  #thought-modal-close,
+  #title-panel-close {
     position: absolute;
     top: 14px;
     right: 16px;
@@ -139,7 +213,8 @@
     padding: 6px;
   }
  
-  #modal-close:hover { color: var(--ink); }
+  #thought-modal-close:hover,
+  #title-panel-close:hover { color: var(--ink); }
  
   #modal-meta {
     display: flex;
@@ -158,7 +233,7 @@
     flex-shrink: 0;
   }
  
-  #modal-title {
+  #thought-modal-title {
     font-family: Georgia, "Iowan Old Style", serif;
     font-size: 26px;
     font-weight: 600;
