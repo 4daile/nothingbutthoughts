@@ -5,10 +5,10 @@
     --line: #7B2525;
  
     /* couleurs des 4 types de contenu */
-    --c-pensee: #c98a3e;
-    --c-recherche: #4c6e8a;
-    --c-narration: #b5566f;
-    --c-lecture: #6b8f71;
+    --c-pensee: #BCA3CA;
+    --c-recherche: #EE5A5A;
+    --c-narration: #91AC67;
+    --c-lecture: #B93636;
   }
  
   * { box-sizing: border-box; }
@@ -74,10 +74,8 @@
  
   .thought-dot:hover,
   .thought-dot:focus-visible {
-    transform: translate(-50%, -50%) scale(1.18);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.22);
-    outline: none;
-  }
+    background: #B93636;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);}
  
   .thought-dot:focus-visible {
     outline: 2px solid var(--ink);
